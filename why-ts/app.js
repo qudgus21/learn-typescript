@@ -1,21 +1,22 @@
 // api url
-var url = 'https://jsonplaceholder.typicode.com/users/1';
+const url = 'https://jsonplaceholder.typicode.com/users';
 
 // dom
-var username = document.querySelector('#username');
-var email = document.querySelector('#email');
-var address = document.querySelector('#address');
+const username = document.querySelector('#username');
+const email = document.querySelector('#email');
+const address = document.querySelector('#address');
 
 // user data
-var user = {};
+let user = {};
 
-function startApp() {
+const startApp = () => {
   axios
     .get(url)
     .then(function (response) {
-      console.log(response);
       user = response.data;
-      // TODO: 이름, 이메일, 주소 표시하기
+      username.innerText = user[0].name;
+      email.innerText = user[0].email;
+      address.innerText = user[0].address;
     })
     .catch(function (error) {
       console.log(error);
