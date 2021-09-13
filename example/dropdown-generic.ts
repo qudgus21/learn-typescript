@@ -1,17 +1,34 @@
-const emails = [
-  { value: 'naver.com', selected: true },
-  { value: 'gmail.com', selected: false },
-  { value: 'hanmail.net', selected: false },
+// interface Email {
+//   value: string;
+//   selected: boolean;
+// }
+
+// interface Product {
+//   value: number;
+//   selected: boolean;
+// }
+
+interface Dropdown<T> {
+  value: T;
+  selected: boolean;
+}
+
+const obj: Dropdown<number> = { value: 10, selected: true };
+
+const emails: Dropdown<string>[] = [
+  { value: "naver.com", selected: true },
+  { value: "gmail.com", selected: false },
+  { value: "hanmail.net", selected: false },
 ];
 
-const numberOfProducts = [
+const numberOfProducts: Dropdown<number>[] = [
   { value: 1, selected: true },
   { value: 2, selected: false },
   { value: 3, selected: false },
 ];
 
-function createDropdownItem(item) {
-  const option = document.createElement('option');
+function createDropdownItem<T>(item: Dropdown<T>) {
+  const option = document.createElement("option");
   option.value = item.value.toString();
   option.innerText = item.value.toString();
   option.selected = item.selected;
@@ -20,7 +37,7 @@ function createDropdownItem(item) {
 
 // NOTE: 이메일 드롭 다운 아이템 추가
 emails.forEach(function (email) {
-  const item = createDropdownItem(email);
-  const selectTag = document.querySelector('#email-dropdown');
+  const item = createDropdownItem<string>(email);
+  const selectTag = document.querySelector("#email-dropdown");
   selectTag.appendChild(item);
 });
